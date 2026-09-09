@@ -1,0 +1,5 @@
+.env
+task.db
+poetry_cache/
+poetry_venvs/
+__pycache__/
