@@ -3,3 +3,8 @@ task.db
 poetry_cache/
 poetry_venvs/
 __pycache__/
+poetry_cache/
+poetry_venvs/
+task.db
+__pycache__/
+.env
