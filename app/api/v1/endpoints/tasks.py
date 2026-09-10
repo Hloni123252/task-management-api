@@ -8,6 +8,7 @@ from app.repositories.tasks_repository import TaskRepository
 
 router = APIRouter(prefix="/tasks", tags=["tasks"])
 
+
 @router.post("/", response_model=TaskResponse, status_code=201)
 async def create_task(
     task: TaskCreate,
@@ -15,6 +16,7 @@ async def create_task(
 ):
     """Create a new task"""
     return await TaskRepository.create(db, task)
+
 
 @router.get("/", response_model=List[TaskResponse])
 async def get_all_tasks(
@@ -24,6 +26,15 @@ async def get_all_tasks(
 ):
     """Get all tasks with pagination"""
     return await TaskRepository.get_all(db, skip, limit)
+
+
+@router.get("/stats", response_model=dict)
+async def get_task_stats(
+    db: AsyncSession = Depends(get_db)
+):
+    """Get aggregated statistics about tasks"""
+    return await TaskRepository.get_stats(db)
+
 
 @router.get("/{task_id}", response_model=TaskResponse)
 async def get_task(
@@ -36,6 +47,7 @@ async def get_task(
         raise HTTPException(status_code=404, detail="Task not found")
     return task
 
+
 @router.put("/{task_id}", response_model=TaskResponse)
 async def update_task(
     task_id: int,
@@ -47,6 +59,7 @@ async def update_task(
     if not task:
         raise HTTPException(status_code=404, detail="Task not found")
     return task
+
 
 @router.delete("/{task_id}", status_code=204)
 async def delete_task(
