@@ -18,7 +18,8 @@ A backend API that demonstrates **production-grade engineering practices** inclu
 - **Auto-generated Documentation** — Interactive Swagger UI
 - **Data Validation** — Pydantic schemas for request/response
 - **Environment Management** — Poetry for dependency management
-- **Analytics Ready** — Foundation for data aggregation endpoints
+- **Analytics Ready** — Aggregation endpoints with SQL `func` and time-series filtering
+- **Data Seeding** — Generate 10,000+ realistic tasks with Faker + Pandas
 
 This project is part of a portfolio demonstrating **Back-End Engineering + Data Science** skills.
 
@@ -29,8 +30,8 @@ This project is part of a portfolio demonstrating **Back-End Engineering + Data 
 ```mermaid
 graph TD
     A[Client / Swagger UI] -->|HTTP Request| B[FastAPI Router]
-    B --> C[Service Layer - Business Logic]
-    C --> D[Repository Layer - Data Access]
-    D --> E[(Database - SQLite/PostgreSQL)]
-    B --> F[Pydantic Schemas - Validation]
-    F --> B
+    B --> C[Repository Layer - Data Access]
+    C --> D[(Database - SQLite/PostgreSQL)]
+    B --> E[Pydantic Schemas - Validation]
+    E --> B
+    F[Seed Script - Faker + Pandas] --> D
