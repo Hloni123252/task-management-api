@@ -31,7 +31,8 @@ This project is part of a portfolio demonstrating **Back-End Engineering + Data 
 graph TD
     A[Client / Swagger UI] -->|HTTP Request| B[FastAPI Router]
     B --> C[Repository Layer - Data Access]
-    C --> D[(Database - SQLite/PostgreSQL)]
+    C --> D[(Database - SQLite)]
     B --> E[Pydantic Schemas - Validation]
     E --> B
     F[Seed Script - Faker + Pandas] --> D
+```
