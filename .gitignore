@@ -8,3 +8,4 @@ poetry_venvs/
 task.db
 __pycache__/
 .env
+test.db
