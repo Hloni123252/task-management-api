@@ -9,3 +9,4 @@ task.db
 __pycache__/
 .env
 test.db
+.coverage
