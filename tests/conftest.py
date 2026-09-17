@@ -94,3 +94,41 @@ async def auth_client(client, auth_token):
     """An HTTP client with the Authorization header set."""
     client.headers["Authorization"] = f"Bearer {auth_token}"
     yield client
+
+
+@pytest_asyncio.fixture
+async def second_user_token(client):
+    """Register and login a second user, return their JWT token."""
+    await client.post(
+        "/auth/register",
+        json={
+            "email": "other@example.com",
+            "username": "otheruser",
+            "password": "otherpassword123",
+        },
+    )
+    response = await client.post(
+        "/auth/login",
+        json={
+            "email": "other@example.com",
+            "password": "otherpassword123",
+        },
+    )
+    assert response.status_code == 200
+    return response.json()["access_token"]
+
+
+@pytest_asyncio.fixture
+async def second_auth_client(second_user_token):
+    """
+    A separate, independent client authenticated as the second user.
+
+    Creates its own AsyncClient so it doesn't share headers with `auth_client`.
+    """
+    transport = ASGITransport(app=app)
+    async with AsyncClient(
+        transport=transport,
+        base_url="http://test",
+        headers={"Authorization": f"Bearer {second_user_token}"},
+    ) as ac:
+        yield ac
