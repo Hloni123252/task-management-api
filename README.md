@@ -2,6 +2,10 @@
 
 > A production-grade, multi-tenant REST API with JWT authentication and analytics — built with FastAPI, SQLAlchemy 2.0, and async Python.
 
+🌐 **Live Demo:** https://task-management-api-m5rq.onrender.com/docs
+
+> ℹ️ Free tier may take 30 seconds on first request while the server wakes up.
+
 [![Python](https://img.shields.io/badge/Python-3.13-blue.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.141-009688.svg)](https://fastapi.tiangolo.com/)
 [![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.0-red.svg)](https://www.sqlalchemy.org/)
@@ -119,6 +123,11 @@ poetry run python -m uvicorn app.main:app --reload
 - **ReDoc:** http://localhost:8000/redoc
 - **Health Check:** http://localhost:8000/health
 
+### Live API (Deployed on Render)
+
+- **Swagger UI:** https://task-management-api-m5rq.onrender.com/docs
+- **Health Check:** https://task-management-api-m5rq.onrender.com/health
+
 ---
 
 ## 🔐 Authentication Flow
@@ -235,7 +244,7 @@ poetry run python -m scripts.seed_data 10000 --email you@example.com
 - [x] Multi-tenancy (row-level isolation per user)
 - [ ] Unit & integration tests (Pytest)
 - [ ] PostgreSQL with Docker
-- [ ] Cloud deployment (Render / Fly.io)
+- [x] Cloud deployment (Render + PostgreSQL)
 - [ ] CI/CD with GitHub Actions
 
 ---
